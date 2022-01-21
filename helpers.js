@@ -11,6 +11,7 @@ const parseAllMovie = async (req) => {
     const url = MAIN_URL + (req?.query?.keyword ? `${req?.query?.keyword}/` : '') + (req?.query?.page ? `trang-${req?.query?.page}.html` : '')
 
     const { data } = await axios.get(url)
+
     const $ = cheerio.load(data)
 
     return await parseListMovie($)
