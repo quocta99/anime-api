@@ -1,0 +1,185 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Movies API",
+    "description": "A Movies API",
+    "contact": {
+      "email": "quoc.ta99@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Movies",
+      "description": "Access to a movies"
+    }
+  ],
+  "paths": {
+    "/movies": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "List movies",
+        "description": "Returns list movies",
+        "operationId": "getMovies",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page of movie to return"
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "Keyword search of movie to return"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "content": {}
+          },
+          "404": {
+            "description": "Movie not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/movies/{id}": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Find movie by ID",
+        "description": "Returns a single movie",
+        "operationId": "getMovieById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of movie to return",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "content": {}
+          },
+          "404": {
+            "description": "Movie not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/movies/streaming/{hash}": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Get link stream movie",
+        "description": "Returns a single movie",
+        "operationId": "getLinkStreamMovie",
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "path",
+            "description": "Hash of movie to return",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "content": {}
+          },
+          "404": {
+            "description": "Movie not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/movies/categories": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "List movie categories",
+        "description": "Returns list movie categories",
+        "operationId": "getMovieCategories",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "content": {}
+          },
+          "404": {
+            "description": "Movie not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/movies/categories/{slug}": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "List movies by category",
+        "description": "Returns list movies by category",
+        "operationId": "getMoviesByCategory",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page of movie to return"
+          },
+          {
+            "name": "slug",
+            "in": "path",
+            "description": "Slug of category movie to return",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "content": {}
+          },
+          "404": {
+            "description": "Movie not found",
+            "content": {}
+          }
+        }
+      }
+    }
+  }
+}
