@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const { parseAllMovie, parseDetailMovie, parseCategoryMovies, parseListMovieByCategory, getCdnLinkStream, convertStreaming } = require('./helpers')
 const _ = require('lodash')
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8080
 const app = express()
 
 const swaggerUi = require('swagger-ui-express');
