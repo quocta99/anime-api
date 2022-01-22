@@ -50,7 +50,6 @@ app.get('/streaming.m3u8', async (req, res) => {
 
 app.get('/movies', async (req, res) => {
     const moviesRedisKey = 'user:movies';
-    await client.connect();
     return client.get(moviesRedisKey, (err, movies) => {
         if (movies) {
             return res.json({ source: 'cache', data: JSON.parse(movies) })
