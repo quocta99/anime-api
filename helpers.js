@@ -163,16 +163,6 @@ const getEpisodes = async (url) => {
     })
 
     return episodes;
-
-    let linkStreams = []
-    for (const item of episodes) {
-        linkStreams.push({
-            name: item.name,
-            link: _.get(await getCdnLinkStream(item.hash, item.play), 'data', null)
-        })
-    }
-
-    return linkStreams
 }
 
 const getAllLinkStream = (idVideo) => {
@@ -244,5 +234,6 @@ module.exports = {
     parseCategoryMovies,
     getCdnLinkStream,
     convertStreaming,
-    parseListMovieByCategory
+    parseListMovieByCategory,
+    fullUrl
 }

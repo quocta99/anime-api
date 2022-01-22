@@ -1,11 +1,18 @@
 const express = require('express')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
-const { parseAllMovie, parseDetailMovie, parseCategoryMovies, parseListMovieByCategory, getCdnLinkStream, convertStreaming } = require('./helpers')
+const { parseAllMovie, parseDetailMovie, parseCategoryMovies, parseListMovieByCategory, getCdnLinkStream, convertStreaming, fullUrl } = require('./helpers')
 const _ = require('lodash')
+const redis = require('redis')
+
+const app = express()
+const client = redis.createClient({
+    host: 'redis-server',
+    port: 6379
+})
+client.on('error', (err) => console.log('Redis Client Error', err));
 
 const port = process.env.PORT || 8080
-const app = express()
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
@@ -42,10 +49,18 @@ app.get('/streaming.m3u8', async (req, res) => {
 })
 
 app.get('/movies', async (req, res) => {
-    const data = await parseAllMovie(req)
-    res.json({
-        data
-    })
+    const moviesRedisKey = 'user:movies';
+    await client.connect();
+    return client.get(moviesRedisKey, (err, movies) => {
+        if (movies) {
+            return res.json({ source: 'cache', data: JSON.parse(movies) })
+        } else { // Key does not exist in Redis store
+            parseAllMovie(req).then(movies => {
+                client.setex(moviesRedisKey, 3600, JSON.stringify(movies))
+                return res.json({ source: 'api', data: movies })
+            })
+        }
+    });
 })
 
 app.get('/movies/categories', async (req, res) => {
