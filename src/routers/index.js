@@ -4,8 +4,8 @@ const router = express.Router()
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger/index.json');
 
-const { HeaderMiddleware } = require('../middlewares/HeaderMiddleware')
-const { findAllMovies, findAllCategories, findMoviesByCategory, findMovieById, findStreamingByHash, streamingByHash } = require("../controllers/MovieController")
+const { findAllMovies, findAllCategories, findMoviesByCategory, findMovieById, findStreamingByHash, streamingByHash } = require("../controllers/MovieController");
+const HeaderMiddleware = require('../middlewares/HeaderMiddleware');
 
 router.use(HeaderMiddleware);
 

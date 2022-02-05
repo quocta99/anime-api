@@ -3,7 +3,7 @@ const cheerio = require('cheerio')
 const _ = require('lodash')
 const Buffer = require('buffer')
 
-const { parseListMovie, getLinkStream, getEpisodes, getCdnLinkStream } = require('../services/MovieService')
+const { parseListMovie, getLinkStream, getEpisodes, getCdnLinkStream } = require('../services/MovieService');
 
 const MAIN_URL = 'https://animevietsub.tv/tim-kiem/'
 const CATEGORY_URL = 'http://animevietsub.tv/the-loai/'
