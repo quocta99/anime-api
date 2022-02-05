@@ -10,7 +10,7 @@ axios.defaults.headers.common = {
 
 const { parseListMovie, getLinkStream, getEpisodes, getCdnLinkStream } = require('../services/MovieService');
 
-const MAIN_URL = 'https://animevietsub.tv/tim-kiem/'
+const MAIN_URL = 'http://animevietsub.tv/tim-kiem/'
 const CATEGORY_URL = 'http://animevietsub.tv/the-loai/'
 
 exports.findAllMovies = async (req, res) => {
