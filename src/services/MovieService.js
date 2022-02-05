@@ -16,15 +16,15 @@ exports.parseListMovie = async ($) => {
     let movies = []
 
     $('.MovieList .TPostMv').each((index, item) => {
-        const linkDetail = $(item).find('.TPost a').attr('href') ?? ''
-        const thumbnail = $(item).find('.Image img').attr('src') ?? ''
-        const title = $(item).find('h2.Title').text() ?? ''
-        const view = $(item).find('.Year').text() ?? ''
-        const quantity = $(item).find('.TPMvCn .Info .Qlty').text() ?? ''
-        const vote = $(item).find('.TPMvCn .Info .Vote').text() ?? ''
-        const time = $(item).find('.TPMvCn .Info .Time').text() ?? ''
-        const date = $(item).find('.TPMvCn .Info .Date').text() ?? ''
-        const director = $(item).find('.TPMvCn .Description .Director').text() ?? ''
+        const linkDetail = $(item).find('.TPost a').attr('href') || ''
+        const thumbnail = $(item).find('.Image img').attr('src') || ''
+        const title = $(item).find('h2.Title').text() || ''
+        const view = $(item).find('.Year').text() || ''
+        const quantity = $(item).find('.TPMvCn .Info .Qlty').text() || ''
+        const vote = $(item).find('.TPMvCn .Info .Vote').text() || ''
+        const time = $(item).find('.TPMvCn .Info .Time').text() || ''
+        const date = $(item).find('.TPMvCn .Info .Date').text() || ''
+        const director = $(item).find('.TPMvCn .Description .Director').text() || ''
 
         let categories = [];
         $(item).find('.TPMvCn .Description .Genre a').each((index, el) => {
