@@ -17,4 +17,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 8080
-CMD [ "nodemon", "index.js" ]
+CMD [ "yarn", "start" ]
