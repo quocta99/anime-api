@@ -2,6 +2,7 @@ const { default: axios } = require('axios');
 const cheerio = require('cheerio')
 const _ = require('lodash')
 const Buffer = require('buffer')
+const base64 = require('nodejs-base64-converter')
 
 axios.defaults.headers.common = {
     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -51,7 +52,7 @@ exports.findMoviesByCategory = async (req, res) => {
 }
 
 exports.findMovieById = async (req, res) => {
-    const url = Buffer.atob(req?.params?.id)
+    const url = base64.decode(req?.params?.id)
     const { data } = await axios(url)
 
     const $ = cheerio.load(data)

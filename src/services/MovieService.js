@@ -3,6 +3,7 @@ const cheerio = require('cheerio')
 const _ = require('lodash')
 const Buffer = require('buffer')
 const FormData = require('form-data');
+const base64 = require('nodejs-base64-converter')
 
 exports.parseListMovie = async ($) => {
     const page = $('.Top .wp-pagenavi .pages').text()
@@ -32,7 +33,7 @@ exports.parseListMovie = async ($) => {
         })
 
         movies.push({
-            id: Buffer.btoa(linkDetail),
+            id: base64.encode(linkDetail),
             title,
             thumbnail,
             view,
